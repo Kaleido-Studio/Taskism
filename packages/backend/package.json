@@ -10,6 +10,9 @@
   "author": "",
   "license": "AGPL-3.0-or-later",
   "dependencies": {
+    "@coobaha/typed-fastify": "^0.8.0",
+    "@fastify/cors": "^8.0.0",
+    "@fastify/static": "^6.4.0",
     "fastify": "^4.2.0",
     "types": "workspace:*"
   },
