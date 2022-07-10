@@ -20,7 +20,7 @@ fastify.get('/', (req, res) => {
   res.send(family);
 });
 
-fastify.listen({ port: 3001 }, (err, addr) => {
+fastify.listen({ port: 3001 }, (err) => {
   if (err) throw err;
-  console.log(`server listening on ${addr}`);
+  fastify.log.info('Server started.');
 });

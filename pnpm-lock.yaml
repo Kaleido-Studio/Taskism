@@ -62,10 +62,12 @@ importers:
   packages/frontend:
     specifiers:
       solid-js: ^1.4.7
+      types: workspace:*
       vite: ^2.9.14
       vite-plugin-solid: ^2.2.6
     dependencies:
       solid-js: 1.4.7
+      types: link:../types
     devDependencies:
       vite: 2.9.14
       vite-plugin-solid: 2.2.6
