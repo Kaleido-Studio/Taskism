@@ -9,7 +9,6 @@
     "esModuleInterop": true,
     "jsx": "preserve",
     "jsxImportSource": "solid-js",
-    "noEmit": true,
     "isolatedModules": true,
     "plugins": [{ "name": "typescript-plugin-css-modules" }]
   },

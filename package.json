@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev:frontend": "pnpm --filter \"frontend\" dev",
-    "dev:backend": "pnpm --filter \"backend\" dev"
+    "dev:backend": "pnpm --filter \"backend\" dev",
+    "check": "tsc --noEmit"
   },
   "keywords": [],
   "author": "",
@@ -23,11 +24,13 @@
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-solid": "^0.7.0",
-    "frontend": "workspace:*",
-    "backend": "workspace:*",
-    "types": "workspace:*",
     "prettier": "^2.7.1",
     "typescript": "^4.7.4",
     "typescript-plugin-css-modules": "^3.4.0"
+  },
+  "dependencies": {
+    "frontend": "workspace:*",
+    "backend": "workspace:*",
+    "types": "workspace:*"
   }
 }

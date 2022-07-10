@@ -21,12 +21,15 @@ importers:
       types: workspace:*
       typescript: ^4.7.4
       typescript-plugin-css-modules: ^3.4.0
+    dependencies:
+      backend: link:packages/backend
+      frontend: link:packages/frontend
+      types: link:packages/types
     devDependencies:
       '@types/babel__core': 7.1.19
       '@types/node': 18.0.3
       '@typescript-eslint/eslint-plugin': 5.30.5_6zdoc3rn4mpiddqwhppni2mnnm
       '@typescript-eslint/parser': 5.30.5_4x5o4skxv6sl53vpwefgt23khm
-      backend: link:packages/backend
       eslint: 8.19.0
       eslint-config-airbnb-base: 15.0.0_q2xwze32dd33a2fc2qubwr4ie4
       eslint-config-airbnb-typescript: 17.0.0_2udmfovz45i65rsm2dczrbtkaa
@@ -34,9 +37,7 @@ importers:
       eslint-plugin-import: 2.26.0_iom7pm3yknyiblqpw2vvqvxs5i
       eslint-plugin-prettier: 4.2.1_7uxdfn2xinezdgvmbammh6ev5i
       eslint-plugin-solid: 0.7.0_4x5o4skxv6sl53vpwefgt23khm
-      frontend: link:packages/frontend
       prettier: 2.7.1
-      types: link:packages/types
       typescript: 4.7.4
       typescript-plugin-css-modules: 3.4.0_typescript@4.7.4
 
