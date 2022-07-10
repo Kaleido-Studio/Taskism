@@ -44,7 +44,9 @@ importers:
   packages/backend:
     specifiers:
       '@fastify/cors': ^8.0.0
+      '@fastify/etag': ^4.0.0
       '@fastify/static': ^6.4.0
+      '@fastify/type-provider-typebox': ^2.1.0
       '@sinclair/typebox': ^0.24.14
       '@types/node': ^18.0.3
       cross-env: ^7.0.3
@@ -55,7 +57,9 @@ importers:
       typescript: ^4.7.4
     dependencies:
       '@fastify/cors': 8.0.0
+      '@fastify/etag': 4.0.0
       '@fastify/static': 6.4.0
+      '@fastify/type-provider-typebox': 2.1.0_ot22jfqhdttjzfx7blkppxsdau
       '@sinclair/typebox': 0.24.14
       fastify: 4.2.0
       types: link:../types
@@ -80,7 +84,10 @@ importers:
       vite-plugin-solid: 2.2.6
 
   packages/types:
-    specifiers: {}
+    specifiers:
+      '@sinclair/typebox': ^0.24.14
+    dependencies:
+      '@sinclair/typebox': 0.24.14
 
 packages:
 
@@ -434,6 +441,12 @@ packages:
     resolution: {integrity: sha512-dPRyT40GiHRzSCll3/Jn2nPe25+E1VXc9tDwRAIKwFCxd5Np5wzgz1tmooWG3sV0qKgrBibihVoCna2ru4SEFg==}
     dev: false
 
+  /@fastify/etag/4.0.0:
+    resolution: {integrity: sha512-fXIDhMx5mACCEMyG+XBQgLLI2YFdYzd/EWLKzDg/2vE/owu1muhdbpiyALminHZZcEbLjYm7cjCXCGdy+eOdDg==}
+    dependencies:
+      fastify-plugin: 3.0.1
+    dev: false
+
   /@fastify/fast-json-stringify-compiler/4.0.0:
     resolution: {integrity: sha512-9pCi6c6tmGt/qfuf2koZQuSIG6ckP9q3mz+JoMmAq9eQ4EtA92sWoK7E0LJUn2FFTS/hp5kag+4+dWsV5ZfcXg==}
     dependencies:
@@ -452,6 +465,16 @@ packages:
       send: 0.18.0
     transitivePeerDependencies:
       - supports-color
+    dev: false
+
+  /@fastify/type-provider-typebox/2.1.0_ot22jfqhdttjzfx7blkppxsdau:
+    resolution: {integrity: sha512-FwuzHZAco34m6bEtY/bw4dcEkFCDV2aigWSFkVw7yYomCJ4umA/cn7jstkF3mJKcZXc+1qthx4g3l5BsXXlLPQ==}
+    peerDependencies:
+      '@sinclair/typebox': ^0.24.1
+      fastify: ^4.0.0
+    dependencies:
+      '@sinclair/typebox': 0.24.14
+      fastify: 4.2.0
     dev: false
 
   /@humanwhocodes/config-array/0.9.5:

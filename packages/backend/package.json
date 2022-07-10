@@ -11,7 +11,9 @@
   "license": "AGPL-3.0-or-later",
   "dependencies": {
     "@fastify/cors": "^8.0.0",
+    "@fastify/etag": "^4.0.0",
     "@fastify/static": "^6.4.0",
+    "@fastify/type-provider-typebox": "^2.1.0",
     "@sinclair/typebox": "^0.24.14",
     "fastify": "^4.2.0",
     "types": "workspace:*"
