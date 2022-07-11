@@ -4,25 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "cross-env DEV=true ts-node index.ts"
+    "dev": "go run main.go"
   },
   "keywords": [],
   "author": "",
   "license": "AGPL-3.0-or-later",
   "dependencies": {
-    "@fastify/cors": "^8.0.0",
-    "@fastify/etag": "^4.0.0",
-    "@fastify/static": "^6.4.0",
-    "@fastify/type-provider-typebox": "^2.1.0",
-    "@sinclair/typebox": "^0.24.14",
-    "fastify": "^4.2.0",
     "types": "workspace:*"
   },
-  "devDependencies": {
-    "@types/node": "^18.0.3",
-    "cross-env": "^7.0.3",
-    "pino-pretty": "^8.1.0",
-    "ts-node": "^10.8.2",
-    "typescript": "^4.7.4"
-  }
+  "devDependencies": {}
 }
