@@ -1,3 +1,3 @@
 # 后端
 
-Taskism 的后端，使用 Fastify。
+Taskism 的后端，使用 Go + Gin。
