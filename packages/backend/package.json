@@ -4,13 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "go run main.go"
+    "dev": "air"
   },
   "keywords": [],
   "author": "",
   "license": "AGPL-3.0-or-later",
-  "dependencies": {
-    "types": "workspace:*"
-  },
+  "dependencies": {},
   "devDependencies": {}
 }

@@ -42,10 +42,7 @@ importers:
       typescript-plugin-css-modules: 3.4.0_typescript@4.7.4
 
   packages/backend:
-    specifiers:
-      types: workspace:*
-    dependencies:
-      types: link:../types
+    specifiers: {}
 
   packages/frontend:
     specifiers:
