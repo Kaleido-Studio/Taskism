@@ -14,5 +14,5 @@ func GetHandler(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	c.JSON(200, gin.H{"uuid": person.ID})
+	c.JSON(http.StatusOK, gin.H{"uuid": person.ID})
 }

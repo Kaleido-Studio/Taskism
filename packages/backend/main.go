@@ -9,6 +9,7 @@ import (
 )
 
 func main() {
+	gin.ForceConsoleColor()
 	r := gin.Default()
 	r.SetTrustedProxies(nil)
 	r.GET("/", func(c *gin.Context) {
