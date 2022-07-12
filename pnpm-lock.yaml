@@ -46,14 +46,22 @@ importers:
 
   packages/frontend:
     specifiers:
+      csstype: ^3.1.0
+      delay: ^5.0.0
+      solid-icons: ^0.5.0
       solid-js: ^1.4.7
+      solid-toast: 0.1.5
       types: workspace:*
       vite: ^2.9.14
       vite-plugin-solid: ^2.2.6
     dependencies:
+      delay: 5.0.0
+      solid-icons: 0.5.0_solid-js@1.4.7
       solid-js: 1.4.7
+      solid-toast: 0.1.5_7gcpxfjppu6s7xwjt2dexmsyga
       types: link:../types
     devDependencies:
+      csstype: 3.1.0
       vite: 2.9.14
       vite-plugin-solid: 2.2.6
 
@@ -905,6 +913,9 @@ packages:
     hasBin: true
     dev: true
 
+  /csstype/3.1.0:
+    resolution: {integrity: sha512-uX1KG+x9h5hIJsaKR9xHUeUraxf8IODOwq9JLNPq6BwB04a/xgpq3rcx47l5BZu5zBPlgD342tdke3Hom/nJRA==}
+
   /debug/2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
     peerDependencies:
@@ -966,6 +977,11 @@ packages:
       has-property-descriptors: 1.0.0
       object-keys: 1.1.1
     dev: true
+
+  /delay/5.0.0:
+    resolution: {integrity: sha512-ReEBKkIfe4ya47wlPYf/gu5ib6yUG0/Aez0JQZQz94kiWtRQvZIQbTiehsnwHvLSWJnQdhVeqYue7Id1dKr0qw==}
+    engines: {node: '>=10'}
+    dev: false
 
   /dir-glob/3.0.1:
     resolution: {integrity: sha512-WkrWp9GR4KXfKGYzOLmTuGVi1UWFfws377n9cc55/tb6DuqyF6pcQ5AbiHEshaDpY9v6oaSr2XCDidGmMwdzIA==}
@@ -1715,6 +1731,14 @@ packages:
       merge2: 1.4.1
       slash: 3.0.0
     dev: true
+
+  /goober/2.1.10_csstype@3.1.0:
+    resolution: {integrity: sha512-7PpuQMH10jaTWm33sQgBQvz45pHR8N4l3Cu3WMGEWmHShAcTuuP7I+5/DwKo39fwti5A80WAjvqgz6SSlgWmGA==}
+    peerDependencies:
+      csstype: ^3.0.10
+    dependencies:
+      csstype: 3.1.0
+    dev: false
 
   /graceful-fs/4.2.10:
     resolution: {integrity: sha512-9ByhssR2fPVsNZj478qUUbKfmL0+t5BDVyjShtyZZLiK7ZDAArFFfopyOTj0M05wE2tJPisA4iTnnXl2YoPvOA==}
@@ -2558,6 +2582,14 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
+  /solid-icons/0.5.0_solid-js@1.4.7:
+    resolution: {integrity: sha512-diDMdtV2loH0LDbAPHAQiQNcxw2lXtzlw1qBDYtmZKSY1vedOdBk/aVylmVhzTYP12SQYeJdcg25MY6CHnkn8w==}
+    peerDependencies:
+      solid-js: ^1.3.0
+    dependencies:
+      solid-js: 1.4.7
+    dev: false
+
   /solid-js/1.4.7:
     resolution: {integrity: sha512-u3hoe5w3xseAc/8zLwYaQVGanWXknMMQkzryNz7lOPy2ygW6DhCtfMseun4kLflRNRzrUUpTV3W5p7j2SGcHCQ==}
 
@@ -2571,6 +2603,17 @@ packages:
       '@babel/types': 7.18.8
       solid-js: 1.4.7
     dev: true
+
+  /solid-toast/0.1.5_7gcpxfjppu6s7xwjt2dexmsyga:
+    resolution: {integrity: sha512-0c5n5Va8jzs03b7E0GJMu4xEZ7MMlmK3PNl93C3P0jm1itD0ypdSgqUQF1aGtPuX8LO898XZRvk+oQz72aStwQ==}
+    peerDependencies:
+      solid-js: ^1.4.2
+    dependencies:
+      goober: 2.1.10_csstype@3.1.0
+      solid-js: 1.4.7
+    transitivePeerDependencies:
+      - csstype
+    dev: false
 
   /source-map-js/1.0.2:
     resolution: {integrity: sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==}
