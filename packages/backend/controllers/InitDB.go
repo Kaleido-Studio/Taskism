@@ -7,7 +7,7 @@ import (
 
 func InitDB() {
 	// Setup the mgm default config
-	err := mgm.SetDefaultConfig(nil, "mgm_lab", options.Client().ApplyURI("mongodb://localhost:27017"))
+	err := mgm.SetDefaultConfig(nil, "mgm_lab", options.Client().ApplyURI("mongodb://localhost:27017/Taskism"))
 	if err != nil {
 		panic(err)
 	}

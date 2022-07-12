@@ -9,6 +9,7 @@ import (
 )
 
 func GinEngine() *gin.Engine {
+	InitDB()
 	gin.ForceConsoleColor()
 	r := gin.Default()
 	r.SetTrustedProxies(nil)
