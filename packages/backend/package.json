@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "air"
+    "dev": "air",
+    "test": "ginkgo -v tests"
   },
   "keywords": [],
   "author": "",
