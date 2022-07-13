@@ -5,11 +5,12 @@
   "main": "index.js",
   "scripts": {
     "dev": "air",
-    "test": "ginkgo tests"
+    "test": "cross-env TEST=true ginkgo tests"
   },
   "keywords": [],
   "author": "",
   "license": "AGPL-3.0-or-later",
-  "dependencies": {},
-  "devDependencies": {}
+  "devDependencies": {
+    "cross-env": "^7.0.3"
+  }
 }

@@ -42,7 +42,10 @@ importers:
       typescript-plugin-css-modules: 3.4.0_typescript@4.7.4
 
   packages/backend:
-    specifiers: {}
+    specifiers:
+      cross-env: ^7.0.3
+    devDependencies:
+      cross-env: 7.0.3
 
   packages/frontend:
     specifiers:
@@ -874,6 +877,14 @@ packages:
     resolution: {integrity: sha512-1j20GZTsvKNkc4BY3NpMOM8tt///wY3FpIzozTOFO2ffuZcV61nojHXVKIy3WM+7ADCy5FVhdZYHYDdgTU0yJw==}
     dependencies:
       is-what: 3.14.1
+    dev: true
+
+  /cross-env/7.0.3:
+    resolution: {integrity: sha512-+/HKd6EgcQCJGh2PSjZuUitQBQynKor4wrFbRg4DtAgS1aWO+gU52xpH7M9ScGgXSYmAVS9bIJ8EzuaGw0oNAw==}
+    engines: {node: '>=10.14', npm: '>=6', yarn: '>=1'}
+    hasBin: true
+    dependencies:
+      cross-spawn: 7.0.3
     dev: true
 
   /cross-spawn/7.0.3:

@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"net/http"
+	"os"
 
 	"taskism/handlers"
 
@@ -10,6 +11,9 @@ import (
 
 func GinEngine() *gin.Engine {
 	InitDB()
+	if os.Getenv("TEST") != "" {
+		gin.SetMode(gin.ReleaseMode)
+	}
 	gin.ForceConsoleColor()
 	r := gin.Default()
 	r.SetTrustedProxies(nil)
@@ -19,9 +23,10 @@ func GinEngine() *gin.Engine {
 		}
 		c.JSON(http.StatusOK, data)
 	})
-	api := r.Group("/api")
+	api := r.Group("/api/user")
 	{
-		api.GET("/:id", handlers.GetHandler)
+		api.GET("/find/:id", handlers.UserGetHandler)
+		api.POST("/register", handlers.UserRegisterHandler)
 	}
 	return r
 }
