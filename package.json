@@ -6,6 +6,7 @@
   "scripts": {
     "dev:frontend": "pnpm --filter \"frontend\" dev",
     "dev:backend": "pnpm --filter \"backend\" dev",
+    "test:backend": "pnpm --filter \"backend\" test",
     "check": "tsc --noEmit"
   },
   "keywords": [],
