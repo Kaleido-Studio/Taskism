@@ -4,5 +4,6 @@
   "go.useLanguageServer": true,
   "gopls": {
     "formatting.gofumpt": true
-  }
+  },
+  "editor.formatOnSave": true
 }
