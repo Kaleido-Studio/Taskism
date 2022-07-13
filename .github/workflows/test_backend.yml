@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  'Test Backend':
+  Test_Backend:
     runs-on: ubuntu-latest
     steps:
       - name: Check out
