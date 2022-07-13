@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "air",
-    "test": "ginkgo -v tests"
+    "test": "ginkgo tests"
   },
   "keywords": [],
   "author": "",
