@@ -19,6 +19,6 @@ jobs:
         with:
           go-version: '1.18.3'
       - name: Install deps
-        run: go mod download ./packages/backend
+        run: cd ./packages/backend && go mod download 
       - name: Run integration test
-        run: pnpm test:backend
+        run: pnpm test
