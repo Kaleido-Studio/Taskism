@@ -21,4 +21,4 @@ jobs:
       - name: Install deps
         run: cd ./packages/backend && go mod download 
       - name: Run integration test
-        run: pnpm test
+        run: pnpm test:backend
