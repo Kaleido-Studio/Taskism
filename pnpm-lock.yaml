@@ -50,7 +50,7 @@ importers:
       delay: ^5.0.0
       solid-icons: ^0.5.0
       solid-js: ^1.4.7
-      solid-toast: 0.1.5
+      solid-toast: ^0.2.0
       types: workspace:*
       vite: ^2.9.14
       vite-plugin-solid: ^2.2.6
@@ -58,7 +58,7 @@ importers:
       delay: 5.0.0
       solid-icons: 0.5.0_solid-js@1.4.7
       solid-js: 1.4.7
-      solid-toast: 0.1.5_7gcpxfjppu6s7xwjt2dexmsyga
+      solid-toast: 0.2.0_7gcpxfjppu6s7xwjt2dexmsyga
       types: link:../types
     devDependencies:
       csstype: 3.1.0
@@ -2604,8 +2604,8 @@ packages:
       solid-js: 1.4.7
     dev: true
 
-  /solid-toast/0.1.5_7gcpxfjppu6s7xwjt2dexmsyga:
-    resolution: {integrity: sha512-0c5n5Va8jzs03b7E0GJMu4xEZ7MMlmK3PNl93C3P0jm1itD0ypdSgqUQF1aGtPuX8LO898XZRvk+oQz72aStwQ==}
+  /solid-toast/0.2.0_7gcpxfjppu6s7xwjt2dexmsyga:
+    resolution: {integrity: sha512-Qtxql0v3SkuDHWpwsyJtN4jiT7ksmVBFHL65LkakPIy2JqRO6oJ7jJjvXabVf+Ww5Av7OyNAIRlCSEoxOY0+JQ==}
     peerDependencies:
       solid-js: ^1.4.2
     dependencies:

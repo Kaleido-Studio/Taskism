@@ -1,8 +1,7 @@
 import { Component } from 'solid-js';
 import toast, { Toaster } from 'solid-toast';
-import { IoCheckmarkCircle } from 'solid-icons/io';
-import favicon from './assets/favicon.svg';
 import './App.css';
+import favicon from './assets/favicon.svg';
 
 const App: Component = () => (
   <div>
@@ -17,7 +16,6 @@ const App: Component = () => (
         e.preventDefault();
         toast.success('这是一条消息', {
           duration: Infinity,
-          icon: <IoCheckmarkCircle size={24} />,
         });
       }}
     >
