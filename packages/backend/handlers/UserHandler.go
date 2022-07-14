@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"net/http"
+	"strings"
 
 	"taskism/models"
 
@@ -41,6 +42,10 @@ func UserRegisterHandler(c *gin.Context) {
 	}
 	user := models.NewUser(body.Name, string(password))
 	if err := mgm.Coll(user).Create(user); err != nil {
+		if strings.Contains(err.Error(), "duplicate key error") {
+			c.JSON(http.StatusConflict, gin.H{"error": err.Error()})
+			return
+		}
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}

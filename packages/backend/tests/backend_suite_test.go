@@ -2,6 +2,7 @@ package main_test
 
 import (
 	"bytes"
+	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -14,9 +15,9 @@ import (
 	. "github.com/onsi/gomega"
 )
 
-var _ = Describe("Backend", func() {
+var _ = Describe("Backend", Ordered, func() {
 	var router *gin.Engine
-	BeforeEach(func() { router = controllers.GinEngine() })
+	BeforeAll(func() { router = controllers.GinEngine() })
 
 	It("Smoke Test", func() {
 		w := httptest.NewRecorder()
@@ -50,12 +51,28 @@ var _ = Describe("Backend", func() {
 
 	Describe("Register user", func() {
 		It("Should able to register", func() {
-			body, _ := json.Marshal(gin.H{"name": "test", "password": "test"})
+			body, _ := json.Marshal(gin.H{"name": fmt.Sprint(GinkgoRandomSeed()), "password": "test"})
 			buffer := bytes.NewBuffer(body)
 			w := httptest.NewRecorder()
 			req, _ := http.NewRequest("POST", "/api/user/register", buffer)
 			router.ServeHTTP(w, req)
 			Expect(w.Code).To(Equal(http.StatusOK))
+		})
+		It("Shouldn't able to register if conflict[409]", func() {
+			body, _ := json.Marshal(gin.H{"name": fmt.Sprint(GinkgoRandomSeed()), "password": "test"})
+			buffer := bytes.NewBuffer(body)
+			w := httptest.NewRecorder()
+			req, _ := http.NewRequest("POST", "/api/user/register", buffer)
+			router.ServeHTTP(w, req)
+			Expect(w.Code).To(Equal(http.StatusConflict))
+		})
+		It("Shouldn't able to register if request is invalid[400]", func() {
+			body, _ := json.Marshal(gin.H{"name": GinkgoRandomSeed(), "password": "test"})
+			buffer := bytes.NewBuffer(body)
+			w := httptest.NewRecorder()
+			req, _ := http.NewRequest("POST", "/api/user/register", buffer)
+			router.ServeHTTP(w, req)
+			Expect(w.Code).To(Equal(http.StatusBadRequest))
 		})
 	})
 })

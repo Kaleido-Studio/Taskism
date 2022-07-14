@@ -11,7 +11,7 @@ import (
 
 func GinEngine() *gin.Engine {
 	InitDB()
-	if os.Getenv("TEST") != "" {
+	if os.Getenv("CI") != "" {
 		gin.SetMode(gin.ReleaseMode)
 	}
 	gin.ForceConsoleColor()
