@@ -16,10 +16,13 @@ import (
 	. "github.com/onsi/gomega"
 )
 
-var _ = Describe("Backend", Ordered, func() {
-	var router *gin.Engine
-	BeforeAll(func() { router = controllers.GinEngine() })
+var router *gin.Engine
 
+var _ = BeforeSuite(func() {
+	router = controllers.GinEngine()
+})
+
+var _ = Describe("Backend", func() {
 	It("Smoke Test", func() {
 		w := httptest.NewRecorder()
 		req, _ := http.NewRequest("GET", "/", nil)
@@ -50,7 +53,7 @@ var _ = Describe("Backend", Ordered, func() {
 		})
 	})
 
-	Describe("Register user", func() {
+	Describe("Register user", Ordered, func() {
 		It("Should able to register", func() {
 			type RegisterResBodyJson struct {
 				Token    string `json:"token"`
