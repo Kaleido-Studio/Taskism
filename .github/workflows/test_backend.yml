@@ -21,9 +21,8 @@ jobs:
       - name: Install deps
         run: |
           cd ./packages/backend
-          pnpm i
           go mod download
-          go install github.com/onsi/ginkgo/v2/ginkgo
+          go install -mod=mod github.com/onsi/ginkgo/v2/ginkgo
       - name: Install and start MongoDB
         uses: supercharge/mongodb-github-action@1.7.0
       - name: Run integration test
