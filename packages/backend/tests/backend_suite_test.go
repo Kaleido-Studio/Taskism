@@ -3,6 +3,7 @@ package main_test
 import (
 	"bytes"
 	"fmt"
+	"io"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -51,12 +52,21 @@ var _ = Describe("Backend", Ordered, func() {
 
 	Describe("Register user", func() {
 		It("Should able to register", func() {
+			type RegisterResBodyJson struct {
+				Token    string `json:"token"`
+				Username string `json:"Username"`
+			}
 			body, _ := json.Marshal(gin.H{"name": fmt.Sprint(GinkgoRandomSeed()), "password": "test"})
 			buffer := bytes.NewBuffer(body)
 			w := httptest.NewRecorder()
 			req, _ := http.NewRequest("POST", "/api/user/register", buffer)
 			router.ServeHTTP(w, req)
 			Expect(w.Code).To(Equal(http.StatusOK))
+			resBody, _ := io.ReadAll(w.Body)
+			var resBodyJson RegisterResBodyJson
+			json.Unmarshal(resBody, &resBodyJson)
+			Expect(resBodyJson.Username).To(Equal(fmt.Sprint(GinkgoRandomSeed())))
+			Expect(resBodyJson.Token).ToNot(Equal(nil))
 		})
 		It("Shouldn't able to register if conflict[409]", func() {
 			body, _ := json.Marshal(gin.H{"name": fmt.Sprint(GinkgoRandomSeed()), "password": "test"})

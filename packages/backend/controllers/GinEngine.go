@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"log"
 	"net/http"
 	"os"
 
@@ -11,6 +12,7 @@ import (
 
 func GinEngine() *gin.Engine {
 	InitDB()
+	log.SetPrefix("[Taskism] ")
 	if os.Getenv("CI") != "" {
 		gin.SetMode(gin.ReleaseMode)
 	}

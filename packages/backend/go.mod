@@ -5,6 +5,7 @@ go 1.18
 require (
 	github.com/gin-gonic/gin v1.8.1
 	github.com/goccy/go-json v0.9.8
+	github.com/golang-jwt/jwt/v4 v4.4.2
 	github.com/kamva/mgm/v3 v3.4.1
 	github.com/onsi/ginkgo/v2 v2.1.4
 	github.com/onsi/gomega v1.19.0

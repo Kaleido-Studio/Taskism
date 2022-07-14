@@ -18,7 +18,7 @@ func InitDB() {
 	if err != nil {
 		panic(err)
 	}
-	user := models.NewUser("", "")
+	user := new(models.User)
 	mgm.Coll(user).Indexes()
 	indexModel := mongo.IndexModel{
 		Keys:    bson.D{{Key: "name", Value: 1}},
