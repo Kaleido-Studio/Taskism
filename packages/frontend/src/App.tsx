@@ -1,16 +1,16 @@
 import { Component } from 'solid-js';
 import toast, { Toaster } from 'solid-toast';
-import './App.css';
+import styles from './App.module.css';
 import favicon from './assets/favicon.svg';
 
 const App: Component = () => (
   <div>
-    <div class="logo">
+    <div class={styles.logo}>
       <a href="https://www.solidjs.com" target="_blank" rel="noreferrer">
         <img src={favicon} />
       </a>
     </div>
-    <h1>Hello Vite + Solid</h1>
+    <h1 class={styles.h}>Hello Vite + Solid</h1>
     <button
       onClick={(e) => {
         e.preventDefault();
