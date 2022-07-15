@@ -33,13 +33,13 @@ var _ = Describe("Backend", func() {
 	Describe("Get user", func() {
 		It("Should 400 if id is not uuid", func() {
 			w := httptest.NewRecorder()
-			req, _ := http.NewRequest("GET", "/api/user/find/1", nil)
+			req, _ := http.NewRequest("GET", "/api/user/info/1", nil)
 			router.ServeHTTP(w, req)
 			Expect(w.Code).To(Equal(http.StatusBadRequest))
 		})
 		It("Should 200 if id is uuid", func() {
 			w := httptest.NewRecorder()
-			req, _ := http.NewRequest("GET", "/api/user/find/97e910d1-a572-4624-bd32-84a7a0c76bde", nil)
+			req, _ := http.NewRequest("GET", "/api/user/info/97e910d1-a572-4624-bd32-84a7a0c76bde", nil)
 			router.ServeHTTP(w, req)
 			Expect(w.Code).To(Equal(http.StatusOK))
 		})
@@ -47,7 +47,7 @@ var _ = Describe("Backend", func() {
 			cc, _ := json.Marshal(gin.H{"dsf": "sdf"})
 			dd := bytes.NewBuffer(cc)
 			w := httptest.NewRecorder()
-			req, _ := http.NewRequest("POST", "/api/user/find/97e910d1-a572-4624-bd32-84a7a0c76bde", dd)
+			req, _ := http.NewRequest("POST", "/api/user/info/97e910d1-a572-4624-bd32-84a7a0c76bde", dd)
 			router.ServeHTTP(w, req)
 			Expect(w.Code).To(Equal(http.StatusNotFound))
 		})

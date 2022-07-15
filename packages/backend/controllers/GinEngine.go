@@ -27,7 +27,7 @@ func GinEngine() *gin.Engine {
 	})
 	api := r.Group("/api/user")
 	{
-		api.GET("/find/:id", handlers.UserGetHandler)
+		api.GET("/info/:id", handlers.UserGetHandler)
 		api.POST("/register", handlers.UserRegisterHandler)
 	}
 	return r
