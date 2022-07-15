@@ -22,6 +22,7 @@ func GinEngine() *gin.Engine {
 	{
 		api.GET("/info/:id", handlers.UserGetHandler)
 		api.POST("/register", handlers.UserRegisterHandler)
+		api.POST("/login", handlers.UserLoginHandler)
 	}
 	return r
 }

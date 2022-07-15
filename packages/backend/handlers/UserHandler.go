@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"log"
 	"net/http"
 	"strings"
 
@@ -9,6 +10,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/kamva/mgm/v3"
+	"go.mongodb.org/mongo-driver/bson"
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -25,13 +27,18 @@ func UserGetHandler(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"uuid": person.ID})
 }
 
-type UserRegisterPostBody struct {
+type UserLogRegReqBody struct {
 	Name     string `json:"name" binding:"required"`
 	Password string `json:"password" binding:"required"`
 }
 
+type RegisterResBody struct {
+	Token    string `json:"token"`
+	Username string `json:"username"`
+}
+
 func UserRegisterHandler(c *gin.Context) {
-	var body UserRegisterPostBody
+	var body UserLogRegReqBody
 	if err := c.ShouldBindJSON(&body); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
@@ -54,5 +61,36 @@ func UserRegisterHandler(c *gin.Context) {
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 	}
-	c.JSON(http.StatusOK, gin.H{"username": user.Name, "token": token})
+	c.JSON(http.StatusOK, RegisterResBody{Username: user.Name, Token: token})
+}
+
+type LoginResBodyJson struct {
+	Token string `json:"token"`
+}
+
+func UserLoginHandler(c *gin.Context) {
+	var body UserLogRegReqBody
+	if err := c.ShouldBindJSON(&body); err != nil {
+		log.Panicln(err)
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	var user models.User
+	err := mgm.Coll(&models.User{}).First(bson.M{"name": body.Name}, &user)
+	if err != nil {
+		log.Panicln(err)
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	if err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(body.Password)); err != nil {
+		log.Panicln(err)
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	token, err := utils.GenerateToken(user.ID.String())
+	if err != nil {
+		log.Panicln(err)
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+	}
+	c.JSON(http.StatusOK, LoginResBodyJson{Token: token})
 }

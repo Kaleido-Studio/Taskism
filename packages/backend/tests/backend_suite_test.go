@@ -9,6 +9,7 @@ import (
 	"testing"
 
 	"taskism/controllers"
+	"taskism/handlers"
 
 	"github.com/gin-gonic/gin"
 	"github.com/goccy/go-json"
@@ -48,19 +49,16 @@ var _ = Describe("Backend", func() {
 
 	Describe("Register user", Ordered, func() {
 		It("Should able to register", func() {
-			type RegisterResBodyJson struct {
-				Token    string `json:"token"`
-				Username string `json:"Username"`
-			}
-			body, _ := json.Marshal(gin.H{"name": fmt.Sprint(GinkgoRandomSeed()), "password": "test"})
+			body, _ := json.Marshal(handlers.UserLogRegReqBody{Name: fmt.Sprint(GinkgoRandomSeed()), Password: "test"})
 			buffer := bytes.NewBuffer(body)
 			w := httptest.NewRecorder()
 			req, _ := http.NewRequest("POST", "/api/user/register", buffer)
 			router.ServeHTTP(w, req)
 			Expect(w.Code).To(Equal(http.StatusOK))
 			resBody, _ := io.ReadAll(w.Body)
-			var resBodyJson RegisterResBodyJson
-			json.Unmarshal(resBody, &resBodyJson)
+			var resBodyJson handlers.RegisterResBody
+			err := json.Unmarshal(resBody, &resBodyJson)
+			Expect(err).To(BeNil())
 			Expect(resBodyJson.Username).To(Equal(fmt.Sprint(GinkgoRandomSeed())))
 			Expect(resBodyJson.Token).ToNot(Equal(nil))
 		})
@@ -79,6 +77,22 @@ var _ = Describe("Backend", func() {
 			req, _ := http.NewRequest("POST", "/api/user/register", buffer)
 			router.ServeHTTP(w, req)
 			Expect(w.Code).To(Equal(http.StatusBadRequest))
+		})
+	})
+
+	Describe("Login user", func() {
+		It("Should able to login", func() {
+			reqBody, _ := json.Marshal(gin.H{"name": fmt.Sprint(GinkgoRandomSeed()), "password": "test"})
+			buffer := bytes.NewBuffer(reqBody)
+			w := httptest.NewRecorder()
+			req, _ := http.NewRequest("POST", "/api/user/login", buffer)
+			router.ServeHTTP(w, req)
+			resBody, _ := io.ReadAll(w.Body)
+			var resBodyJson handlers.LoginResBodyJson
+			err := json.Unmarshal(resBody, &resBodyJson)
+			Expect(err).To(BeNil())
+			Expect(w.Code).To(Equal(http.StatusOK))
+			Expect(resBodyJson.Token).ToNot(BeNil())
 		})
 	})
 })
