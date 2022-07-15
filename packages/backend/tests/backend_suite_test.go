@@ -47,6 +47,33 @@ var _ = Describe("Backend", func() {
 		})
 	})
 
+	Describe("Invalid user register requests", func() {
+		It("Shouldn't able to register if request is invalid[400]", func() {
+			body, _ := json.Marshal(gin.H{"name": GinkgoRandomSeed(), "password": "test"})
+			buffer := bytes.NewBuffer(body)
+			w := httptest.NewRecorder()
+			req, _ := http.NewRequest("POST", "/api/user/register", buffer)
+			router.ServeHTTP(w, req)
+			Expect(w.Code).To(Equal(http.StatusBadRequest))
+		})
+		It("Shouldn't able to register if there's no password[400]", func() {
+			body, _ := json.Marshal(gin.H{"name": fmt.Sprint(GinkgoRandomSeed() + 1)})
+			buffer := bytes.NewBuffer(body)
+			w := httptest.NewRecorder()
+			req, _ := http.NewRequest("POST", "/api/user/register", buffer)
+			router.ServeHTTP(w, req)
+			Expect(w.Code).To(Equal(http.StatusBadRequest))
+		})
+		It("Shouldn't able to register if there's no username[400]", func() {
+			body, _ := json.Marshal(gin.H{"password": "test"})
+			buffer := bytes.NewBuffer(body)
+			w := httptest.NewRecorder()
+			req, _ := http.NewRequest("POST", "/api/user/register", buffer)
+			router.ServeHTTP(w, req)
+			Expect(w.Code).To(Equal(http.StatusBadRequest))
+		})
+	})
+
 	Describe("Register user", Ordered, func() {
 		var username string
 		It("Should able to register", func() {
@@ -71,14 +98,6 @@ var _ = Describe("Backend", func() {
 			req, _ := http.NewRequest("POST", "/api/user/register", buffer)
 			router.ServeHTTP(w, req)
 			Expect(w.Code).To(Equal(http.StatusConflict))
-		})
-		It("Shouldn't able to register if request is invalid[400]", func() {
-			body, _ := json.Marshal(gin.H{"name": GinkgoRandomSeed(), "password": "test"})
-			buffer := bytes.NewBuffer(body)
-			w := httptest.NewRecorder()
-			req, _ := http.NewRequest("POST", "/api/user/register", buffer)
-			router.ServeHTTP(w, req)
-			Expect(w.Code).To(Equal(http.StatusBadRequest))
 		})
 		It("Should able to login", func() {
 			reqBody, _ := json.Marshal(gin.H{"name": username, "password": "test"})
