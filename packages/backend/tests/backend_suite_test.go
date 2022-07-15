@@ -48,8 +48,10 @@ var _ = Describe("Backend", func() {
 	})
 
 	Describe("Register user", Ordered, func() {
+		var username string
 		It("Should able to register", func() {
-			body, _ := json.Marshal(handlers.UserLogRegReqBody{Name: fmt.Sprint(GinkgoRandomSeed()), Password: "test"})
+			username = fmt.Sprint(GinkgoRandomSeed())
+			body, _ := json.Marshal(handlers.UserLogRegReqBody{Name: username, Password: "test"})
 			buffer := bytes.NewBuffer(body)
 			w := httptest.NewRecorder()
 			req, _ := http.NewRequest("POST", "/api/user/register", buffer)
@@ -59,11 +61,11 @@ var _ = Describe("Backend", func() {
 			var resBodyJson handlers.RegisterResBody
 			err := json.Unmarshal(resBody, &resBodyJson)
 			Expect(err).To(BeNil())
-			Expect(resBodyJson.Username).To(Equal(fmt.Sprint(GinkgoRandomSeed())))
+			Expect(resBodyJson.Username).To(Equal(username))
 			Expect(resBodyJson.Token).ToNot(Equal(nil))
 		})
 		It("Shouldn't able to register if conflict[409]", func() {
-			body, _ := json.Marshal(gin.H{"name": fmt.Sprint(GinkgoRandomSeed()), "password": "test"})
+			body, _ := json.Marshal(gin.H{"name": username, "password": "test"})
 			buffer := bytes.NewBuffer(body)
 			w := httptest.NewRecorder()
 			req, _ := http.NewRequest("POST", "/api/user/register", buffer)
@@ -78,11 +80,8 @@ var _ = Describe("Backend", func() {
 			router.ServeHTTP(w, req)
 			Expect(w.Code).To(Equal(http.StatusBadRequest))
 		})
-	})
-
-	Describe("Login user", func() {
 		It("Should able to login", func() {
-			reqBody, _ := json.Marshal(gin.H{"name": fmt.Sprint(GinkgoRandomSeed()), "password": "test"})
+			reqBody, _ := json.Marshal(gin.H{"name": username, "password": "test"})
 			buffer := bytes.NewBuffer(reqBody)
 			w := httptest.NewRecorder()
 			req, _ := http.NewRequest("POST", "/api/user/login", buffer)
