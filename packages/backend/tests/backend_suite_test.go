@@ -23,13 +23,6 @@ var _ = BeforeSuite(func() {
 })
 
 var _ = Describe("Backend", func() {
-	It("Smoke Test", func() {
-		w := httptest.NewRecorder()
-		req, _ := http.NewRequest("GET", "/", nil)
-		router.ServeHTTP(w, req)
-		Expect(w.Code).To(Equal(http.StatusOK))
-	})
-
 	Describe("Get user", func() {
 		It("Should 400 if id is not uuid", func() {
 			w := httptest.NewRecorder()

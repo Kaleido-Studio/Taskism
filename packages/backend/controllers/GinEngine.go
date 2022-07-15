@@ -2,7 +2,6 @@ package controllers
 
 import (
 	"log"
-	"net/http"
 	"os"
 
 	"taskism/handlers"
@@ -19,12 +18,6 @@ func GinEngine() *gin.Engine {
 	gin.ForceConsoleColor()
 	r := gin.Default()
 	r.SetTrustedProxies(nil)
-	r.GET("/", func(c *gin.Context) {
-		data := gin.H{
-			"hello": "Yu Hanwen",
-		}
-		c.JSON(http.StatusOK, data)
-	})
 	api := r.Group("/api/user")
 	{
 		api.GET("/info/:id", handlers.UserGetHandler)
