@@ -50,7 +50,7 @@ func UserRegisterHandler(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	token, err := utils.GenerateToken(1145)
+	token, err := utils.GenerateToken(user.ID.String())
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 	}

@@ -11,7 +11,7 @@ import (
 type Claims struct {
 	UserId    string `json:"jti"`
 	Authority string `json:"authorities"`
-	jwt.StandardClaims
+	jwt.RegisteredClaims
 }
 
 func ParseToken(token string) (*Claims, error) {
@@ -33,15 +33,15 @@ func ParseToken(token string) (*Claims, error) {
 	return nil, err
 }
 
-func GenerateToken(userid int) (string, error) {
+func GenerateToken(userid string) (string, error) {
 	secret, _ := base64.RawStdEncoding.DecodeString("JWTSecret")
 	nowTime := time.Now()
 	expireTime := nowTime.Add(300 * 30000 * time.Second)
 	issuer := "maiquer"
 	claims := Claims{
-		UserId: string(rune(userid)),
-		StandardClaims: jwt.StandardClaims{
-			ExpiresAt: expireTime.Unix(),
+		UserId: userid,
+		RegisteredClaims: jwt.RegisteredClaims{
+			ExpiresAt: &jwt.NumericDate{Time: expireTime},
 			Issuer:    issuer,
 		},
 	}
