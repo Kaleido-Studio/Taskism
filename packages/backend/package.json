@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "air",
-    "test": "ginkgo --randomize-all --keep-going --race tests"
+    "test": "ginkgo --randomize-all --keep-going --race tests",
+    "build": "go build"
   },
   "keywords": [],
   "author": "",
