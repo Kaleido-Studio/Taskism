@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "license": "AGPL-3.0-or-later",
   "dependencies": {
-    "@sinclair/typebox": "^0.24.14"
+    "@sinclair/typebox": "^0.24.20"
   }
 }
