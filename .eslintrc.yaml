@@ -8,8 +8,6 @@ plugins:
   - '@typescript-eslint'
   - 'prettier'
   - 'solid'
-env:
-globals:
 rules:
   'prettier/prettier': 'error'
   'react/jsx-filename-extension': 0
