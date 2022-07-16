@@ -7,7 +7,9 @@
     "dev:frontend": "pnpm --filter \"frontend\" dev",
     "dev:backend": "pnpm --filter \"backend\" dev",
     "test:backend": "pnpm --filter \"backend\" test",
-    "build:frontend": "pnpm --filter \"frontend\" build",
+    "build:frontend": "pnpm --filter \"frontend\" build && ts-node ./scripts/build.ts",
+    "build:backend": "pnpm --filter \"backend\" build",
+    "build": "pnpm build:frontend && pnpm build:backend",
     "check": "tsc --noEmit"
   },
   "keywords": [],
@@ -15,6 +17,7 @@
   "license": "AGPL-3.0-or-later",
   "packageManager": "pnpm@7.5.0",
   "devDependencies": {
+    "@types/adm-zip": "^0.5.0",
     "@types/babel__core": "^7.1.19",
     "@types/node": "^18.0.4",
     "@typescript-eslint/eslint-plugin": "^5.30.6",
@@ -31,8 +34,10 @@
     "typescript-plugin-css-modules": "^3.4.0"
   },
   "dependencies": {
+    "adm-zip": "^0.5.9",
     "backend": "workspace:*",
     "frontend": "workspace:*",
+    "ts-node": "^10.9.1",
     "types": "workspace:*"
   }
 }
