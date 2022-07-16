@@ -4,23 +4,39 @@ import (
 	"bytes"
 	"fmt"
 	"io"
+	"log"
 	"net/http"
 	"net/http/httptest"
 	"testing"
 
 	"taskism/controllers"
 	"taskism/handlers"
+	"taskism/models"
 
 	"github.com/gin-gonic/gin"
 	"github.com/goccy/go-json"
+	"github.com/kamva/mgm/v3"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
+	"go.mongodb.org/mongo-driver/bson"
 )
 
 var router *gin.Engine
 
 var _ = BeforeSuite(func() {
 	router = controllers.GinEngine()
+})
+
+var _ = AfterSuite(func() {
+	user := &models.User{}
+	err := mgm.Coll(user).First(bson.M{"name": fmt.Sprint(GinkgoRandomSeed())}, user)
+	if err != nil {
+		log.Panicln(err)
+	} else {
+		if err := mgm.Coll(user).Delete(user); err != nil {
+			log.Panicln(err)
+		}
+	}
 })
 
 var _ = Describe("Backend", func() {
