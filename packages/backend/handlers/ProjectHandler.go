@@ -4,7 +4,7 @@ import (
 	"net/http"
 
 	"taskism/models"
-	"taskism/utils/msg"
+	"taskism/pkgs/msg"
 
 	"github.com/gin-gonic/gin"
 	"github.com/kamva/mgm/v3"

@@ -5,8 +5,8 @@ import (
 	"strings"
 
 	"taskism/models"
+	"taskism/pkgs/msg"
 	"taskism/utils"
-	"taskism/utils/msg"
 
 	"github.com/gin-gonic/gin"
 	"github.com/kamva/mgm/v3"
