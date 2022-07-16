@@ -25,4 +25,11 @@ func InitDB() {
 		Options: options.Index().SetUnique(true),
 	}
 	mgm.Coll(user).Indexes().CreateOne(context.Background(), indexModel)
+	projects := new(models.Project)
+	mgm.Coll(projects).Indexes()
+	projectIndexModel := mongo.IndexModel{
+		Keys:    bson.D{{Key: "name", Value: 1}},
+		Options: options.Index().SetUnique(true),
+	}
+	mgm.Coll(projects).Indexes().CreateOne(context.Background(), projectIndexModel)
 }
