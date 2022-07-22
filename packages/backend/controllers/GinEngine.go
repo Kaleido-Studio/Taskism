@@ -22,18 +22,19 @@ func GinEngine() *gin.Engine {
 	r.SetTrustedProxies(nil)
 	r.Use(middlewares.Spa())
 	mime.AddExtensionType(".js", "application/javascript")
-	apiUser := r.Group("/api/user")
+	api := r.Group("/api")
+	userRoute := api.Group("/user")
 	{
-		apiUser.GET("/info/:id", handlers.UserGetHandler)
-		apiUser.POST("/register", handlers.UserRegisterHandler)
-		apiUser.POST("/login", handlers.UserLoginHandler)
+		userRoute.GET("/info/:id", handlers.UserGetHandler)
+		userRoute.POST("/register", handlers.UserRegisterHandler)
+		userRoute.POST("/login", handlers.UserLoginHandler)
 	}
-	apiProject := r.Group("/api/project")
+	projectRouter := api.Group("/project")
 	{
-		apiProject.GET("/", handlers.ProjectGetHandler)
-		apiProject.POST("/", handlers.ProjectPostHandler)
-		apiProject.PUT("/:id", handlers.ProjectPutHandler)
-		apiProject.DELETE("/:id", handlers.ProjectDeleteHandler)
+		projectRouter.GET("/", handlers.ProjectGetHandler)
+		projectRouter.POST("/", handlers.ProjectPostHandler)
+		projectRouter.PUT("/:id", handlers.ProjectPutHandler)
+		projectRouter.DELETE("/:id", handlers.ProjectDeleteHandler)
 	}
 	return r
 }
