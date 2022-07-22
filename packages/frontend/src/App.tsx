@@ -1,28 +1,11 @@
+import { Route, Routes } from 'solid-app-router';
 import { Component } from 'solid-js';
-import toast, { Toaster } from 'solid-toast';
-import styles from './App.module.css';
-import favicon from './assets/favicon.svg';
+import { LandingGuest } from './pages/LandingGuest';
 
 const App: Component = () => (
-  <div>
-    <div class={styles.logo}>
-      <a href="https://www.solidjs.com" target="_blank" rel="noreferrer">
-        <img src={favicon} />
-      </a>
-    </div>
-    <h1 class={styles.h}>Hello Vite + Solid</h1>
-    <button
-      onClick={(e) => {
-        e.preventDefault();
-        toast.success('这是一条消息', {
-          duration: Infinity,
-        });
-      }}
-    >
-      点我
-    </button>
-    <Toaster position="top-center" />
-  </div>
+  <Routes>
+    <Route path="/" component={LandingGuest} />
+  </Routes>
 );
 
 export default App;

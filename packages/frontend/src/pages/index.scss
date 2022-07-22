@@ -1,0 +1,25 @@
+.title-color{
+    background-image: -webkit-linear-gradient(left,
+    #a596cd,
+    #b96972 25%,
+    #e88a57 50%,
+    #804170 75%,
+    #a596cd 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    background-size: 200% 100%;
+    animation: moving-dots 5s infinite linear ;
+}
+
+@keyframes moving-dots {
+    0% {
+        background-position: 0 0;
+    }
+    50% {
+        background-position: -100% 0;
+    }
+    100%{
+        background-position: 0 0;
+    }
+}
