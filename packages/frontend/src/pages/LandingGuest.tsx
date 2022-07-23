@@ -4,7 +4,7 @@ import './index.scss';
 export const LandingGuest:Component = () => {
     return (<>
 <div class="hero container min-h-screen mx-auto">
-  <div class="hero-content flex-col lg:flex-row container mx-auto justify-around">
+  <div class="hero-content flex-col lg:flex-row container justify-around w-screen">
     <div class="text-center lg:text-left">
       <h1 class="text-6xl font-bold title-color">Taskism</h1>
       <p class="py-7 font-semibold">Unleash your potential</p>
