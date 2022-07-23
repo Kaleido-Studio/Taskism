@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev:frontend": "pnpm --filter \"frontend\" dev",
+    "dev:frontend": "pnpm --filter \"frontend\" dev --open --host",
     "dev:backend": "pnpm --filter \"backend\" dev",
     "test:backend": "pnpm --filter \"backend\" test",
     "build:frontend": "pnpm --filter \"frontend\" build && ts-node ./scripts/build.ts",
